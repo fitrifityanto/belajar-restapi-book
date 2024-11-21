@@ -3,19 +3,23 @@ import { Book } from '../model/book.js';
 
 // membuat data buku
 const create = async (req, res) => {
-    // validasi request
-    if (!req.body.judul) {
-        res.status(400).send({ message: "judul tidak boleh kosong!" });
-        return;
+    try {        
+        // validasi request
+        if (!req.body.judul) {
+            res.status(400).send({ message: "judul tidak boleh kosong!" });
+            return;
+        }
+    
+        await Book.insertMany({
+            judul: req.body.judul,
+            penulis: req.body.penulis,
+            tahun: req.body.tahun,
+            deskripsi: req.body.deskripsi,
+        })
+        res.send({ message: "berhasil menambah buku" })
+    } catch (error) {
+        res.status(500).send({ message: "error menerima data" })
     }
-
-    const books = await Book.insertMany({
-        judul: req.body.judul,
-        penulis: req.body.penulis,
-        tahun: req.body.tahun,
-        deskripsi: req.body.deskripsi,
-    })
-    res.send(books)
 }
 
 // menampilkan semua data buku
@@ -67,6 +71,7 @@ const updateBook = async (req, res) => {
         // validasi data tidak boleh kosong
         if (!req.body) {
             res.status(400).send({ message: "data yang akan diubah tidak boleh kosoong" })
+            return;
         }
         
         const book = await Book.findByIdAndUpdate(req.params.id, req.body)
