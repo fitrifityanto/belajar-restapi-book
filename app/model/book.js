@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose, { Schema } from "mongoose";
 
 const schema = new Schema( {
     judul: {
@@ -13,6 +13,13 @@ const schema = new Schema( {
     deskripsi: String,
 })
 
+schema.method("toJSON", function() {
+    const { __v, _id, ...object } = this.toObject()
+    object.id = _id
+    return object
+})
+
 const Book = mongoose.model('Book', schema)
+
 
 export { Book }
