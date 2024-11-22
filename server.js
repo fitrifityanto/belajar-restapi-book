@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import 'dotenv/config';
 import { } from './app/config/db.config.js';
 import { router } from './app/routes/book.router.js';
 
@@ -17,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // simple route
 app.get('/', (req, res) => {
-    res.json({ message: "selamaat datang" })
+    res.json({ message: "selamaat datang di api-book-sample-juwayri" })
 });
 
 app.use('/api/books', router)
@@ -27,7 +28,7 @@ app.use('/', (req, res) => {
 });
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}/`);
 });

@@ -24,8 +24,12 @@ const create = async (req, res) => {
 
 // menampilkan semua data buku
 const findAll = async (req, res) => {
-    const books = await Book.find({})
-    res.send(books)
+    try {        
+        const books = await Book.find({})
+        res.send(books)
+    } catch (error) {
+        res.status(500).send({ message: `${error}`  })
+    }
 }
 
 // menampilkan data buku berdasarkan id
