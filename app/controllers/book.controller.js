@@ -1,4 +1,5 @@
-import { } from '../config/db.config.js';
+// import { } from '../config/db.config.js';
+import { conn } from '../config/db.config.js';
 import { Book } from '../model/book.js';
 
 // membuat data buku
@@ -9,7 +10,7 @@ const create = async (req, res) => {
             res.status(400).send({ message: "judul tidak boleh kosong!" });
             return;
         }
-    
+        await conn
         await Book.insertMany({
             judul: req.body.judul,
             penulis: req.body.penulis,
@@ -25,6 +26,7 @@ const create = async (req, res) => {
 // menampilkan semua data buku
 const findAll = async (req, res) => {
     try {        
+        await conn
         const books = await Book.find({})
         res.send(books)
     } catch (error) {
@@ -35,6 +37,7 @@ const findAll = async (req, res) => {
 // menampilkan data buku berdasarkan id
 const findBookById = async (req, res) => {
     try {
+        await conn
         const book = await Book.findById(req.params.id)
         if (!book) {
             res.status(404).send({ message: `data buku id ${req.params.id} tidak ada` })
@@ -48,6 +51,7 @@ const findBookById = async (req, res) => {
 // proses menghapus 1 data buku
 const deleteBook = async (req, res) => {
     try {
+        await conn
         const book = await Book.findByIdAndDelete(req.params.id)
         if (!book) {
             res.status(404).send({ message: `data buku id ${req.params.id} gagal di hapus, mungkin data tidak ada` })
@@ -62,6 +66,7 @@ const deleteBook = async (req, res) => {
 // proses menghapus semua data buku
 const deleteAll = async (req, res) => {
     try {
+        await conn
         const book = await Book.deleteMany({})
         res.send({ message: `${book.deletedCount} buku berhasil dihapus!` })
     } catch (error) {
@@ -77,7 +82,7 @@ const updateBook = async (req, res) => {
             res.status(400).send({ message: "data yang akan diubah tidak boleh kosoong" })
             return;
         }
-        
+        await conn
         const book = await Book.findByIdAndUpdate(req.params.id, req.body)
         if (!book) {
             res.status(404).send({ message: "gagal mengubah data buku, mungkin data buku tidak ada" })

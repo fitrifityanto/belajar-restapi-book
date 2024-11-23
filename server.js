@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // simple route
 app.get('/', (req, res) => {
-    res.json({ message: "selamaat datang di api-book-sample-juwayri" })
+    res.json({ message: "selamaat datang di api-book-juwayri" })
 });
 
 app.use('/api/books', router)

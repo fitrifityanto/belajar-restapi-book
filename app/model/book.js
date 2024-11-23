@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { conn } from '../config/db.config.js';
 
 const schema = new Schema( {
     judul: {
@@ -19,7 +20,6 @@ schema.method("toJSON", function() {
     return object
 })
 
-const Book = mongoose.model('Book', schema)
-
-
+  const Book = mongoose.model('Book', schema)
+   
 export { Book }
