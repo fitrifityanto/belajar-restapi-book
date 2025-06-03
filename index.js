@@ -30,14 +30,15 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.use("/api/books", validateApiKey ,router);
+app.use("/api/books", validateApiKey, router);
 
 app.use("/", (req, res) => {
   res.status(404).json({ message: "halaman tidak ditemukan" });
 });
 
 // set port, listen for requests
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}/`);
-});
+// const PORT = process.env.PORT;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}/`);
+// });
+export default app;
