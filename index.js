@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import "./config/db.config.js";
 import { router } from "./routes/book.router.js";
+import { validateApiKey } from "./middleware/validate.js";
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -29,7 +30,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.use("/api/books", router);
+app.use("/api/books", validateApiKey ,router);
 
 app.use("/", (req, res) => {
   res.status(404).json({ message: "halaman tidak ditemukan" });
