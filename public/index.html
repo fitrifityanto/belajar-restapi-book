@@ -3,10 +3,274 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Book API Sample by fitnr</title>
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
+
+    <title>Book REST API by fitnr</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <h1>Selamat Datang</h1>
+  <body class="bg-gradient-to-br from-blue-50 to-emerald-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-book text-3xl text-emerald-600"></i>
+            <h1 class="text-2xl font-bold text-gray-800">Book REST API</h1>
+          </div>
+          <a
+            href="/api-docs"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition duration-300"
+          >
+            <i class="fas fa-file-alt mr-2"></i>API Docs
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-6 py-16">
+      <div class="text-center">
+        <h2 class="text-5xl font-bold text-gray-800 mb-6">
+          Kelola Data Buku dengan
+          <span class="text-emerald-600">REST API</span>
+        </h2>
+        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          Web server modern untuk mengelola koleksi buku Anda. Dibangun dengan
+          Express.js dan MongoDB, dilengkapi dengan autentikasi API key untuk
+          keamanan maksimal.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/api-docs"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105"
+          >
+            <i class="fas fa-rocket mr-2"></i>Mulai Sekarang
+          </a>
+          <a
+            href="#features"
+            class="bg-white hover:bg-gray-50 text-emerald-600 px-8 py-3 rounded-lg font-semibold border-2 border-emerald-600 transition duration-300"
+          >
+            <i class="fas fa-info-circle mr-2"></i>Pelajari Lebih Lanjut
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="bg-white py-16">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h3 class="text-3xl font-bold text-gray-800 mb-4">Fitur Utama</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            API lengkap untuk operasi CRUD dengan keamanan terjamin
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Create Books -->
+          <div
+            class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-green-600 text-3xl mb-4">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">POST</h4>
+            <p class="text-gray-600">
+              Tambah buku baru ke dalam koleksi database
+            </p>
+          </div>
+
+          <!-- Read Books -->
+          <div
+            class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-blue-600 text-3xl mb-4">
+              <i class="fas fa-search"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">GET</h4>
+            <p class="text-gray-600">
+              Ambil data semua buku atau buku tertentu
+            </p>
+          </div>
+
+          <!-- Update Books -->
+          <div
+            class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-yellow-600 text-3xl mb-4">
+              <i class="fas fa-edit"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">PUT</h4>
+            <p class="text-gray-600">Update informasi buku berdasarkan ID</p>
+          </div>
+
+          <!-- Delete Books -->
+          <div
+            class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-red-600 text-3xl mb-4">
+              <i class="fas fa-trash"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">DELETE</h4>
+            <p class="text-gray-600">Hapus buku per ID atau hapus semua data</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Info Section -->
+    <section class="bg-gray-50 py-16">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">Informasi API</h3>
+            <p class="text-gray-600">
+              Detail teknis untuk menggunakan Book REST API
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Endpoint -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-link text-emerald-600 text-xl mr-3"></i>
+                <h4 class="text-xl font-semibold text-gray-800">Endpoint</h4>
+              </div>
+              <div class="bg-gray-100 p-3 rounded-lg">
+                <code class="text-sm text-gray-700">/api/books</code>
+              </div>
+            </div>
+
+            <!-- Authentication -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-shield-alt text-emerald-600 text-xl mr-3"></i>
+                <h4 class="text-xl font-semibold text-gray-800">Autentikasi</h4>
+              </div>
+              <p class="text-gray-600 mb-2">Diperlukan API Key di Header:</p>
+              <div class="bg-gray-100 p-3 rounded-lg">
+                <code class="text-sm text-gray-700"
+                  >x-api-key: YOUR_API_KEY</code
+                >
+              </div>
+            </div>
+
+            <!-- Database -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-database text-emerald-600 text-xl mr-3"></i>
+                <h4 class="text-xl font-semibold text-gray-800">Database</h4>
+              </div>
+              <p class="text-gray-600">
+                MongoDB untuk penyimpanan data yang reliable dan scalable
+              </p>
+            </div>
+
+            <!-- Technology -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-cogs text-emerald-600 text-xl mr-3"></i>
+                <h4 class="text-xl font-semibold text-gray-800">Technology</h4>
+              </div>
+              <p class="text-gray-600">
+                Express.js untuk web server yang cepat dan minimalis
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="bg-emerald-600 py-16">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center">
+          <h3 class="text-3xl font-bold text-white mb-4">Siap Memulai?</h3>
+          <p class="text-emerald-100 mb-8 text-lg">
+            Akses dokumentasi lengkap API untuk mempelajari semua endpoint dan
+            parameter yang tersedia
+          </p>
+          <a
+            href="/api-docs"
+            class="bg-white hover:bg-gray-100 text-emerald-600 px-8 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105 inline-block"
+          >
+            <i class="fas fa-book-open mr-2"></i>
+            Buka Dokumentasi API
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="flex items-center space-x-3 mb-4 md:mb-0">
+            <i class="fas fa-book text-2xl text-emerald-400"></i>
+            <span class="text-xl font-semibold">Book REST API</span>
+          </div>
+          <div class="flex space-x-6">
+            <a
+              href="/api-docs"
+              class="text-gray-300 hover:text-white transition duration-300"
+            >
+              <i class="fas fa-file-alt mr-1"></i>Dokumentasi
+            </a>
+            <a
+              href="#features"
+              class="text-gray-300 hover:text-white transition duration-300"
+            >
+              <i class="fas fa-star mr-1"></i>Fitur
+            </a>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-6 pt-6 text-center">
+          <p class="text-gray-400">
+            © <span id="copyright-year">2024</span> Book REST API. Powered by
+            Express.js & MongoDB<br />
+            Built with <i class="fas fa-heart text-red-500"></i> by
+            <a href="https://fitnr.my.id" target="_blank">fitnr</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add scroll effect to header
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.classList.add("shadow-lg");
+        } else {
+          header.classList.remove("shadow-lg");
+        }
+      });
+      // Update copyright year
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentYear = new Date().getFullYear();
+        const copyrightElement = document.getElementById("copyright-year");
+        if (currentYear > 2024) {
+          copyrightElement.textContent = `2024 - ${currentYear}`;
+        }
+      });
+    </script>
   </body>
 </html>
