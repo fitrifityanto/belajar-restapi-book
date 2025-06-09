@@ -8,7 +8,7 @@ info:
 servers:
   - url: https://book-api-express-mongodb.netlify.app
     description: Production Server
-  - url: http://localhost:8888 #port for netlify dev
+  - url: http://localhost:8888 #this is port for netlify dev
     description: Development Server
 
 components:
