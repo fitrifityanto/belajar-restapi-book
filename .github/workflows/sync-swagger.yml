@@ -1,7 +1,6 @@
-name:
-  Sync Swagger to gh-pages
+name: Sync Swagger to gh-pages
 
-  # Trigger workflow saat push ke branch main, hanya untuk perubahan pada swagger.yaml
+# Trigger workflow saat push ke branch main, hanya untuk perubahan pada netlify/functions/swagger.yaml
 on:
   push:
     branches: [main]
@@ -12,20 +11,25 @@ jobs:
   sync-swagger:
     runs-on: ubuntu-latest
     steps:
+      # Checkout branch gh-pages
       - name: Checkout gh-pages
         uses: actions/checkout@v4
         with:
           ref: gh-pages
 
+      # Checkout swagger.yaml dari branch main
       - name: Checkout swagger.yaml from main
         run: |
           git fetch origin main
-          git checkout origin/main -- docs/swagger.yaml
+          git checkout origin/main -- netlify/functions/swagger.yaml
+          mkdir -p docs # Pastikan folder docs ada di gh-pages
+          mv netlify/functions/swagger.yaml docs/swagger.yaml
 
+      # Commit dan push perubahan ke gh-pages
       - name: Commit and push changes
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add docs/swagger.yaml
-          git commit -m "Sync swagger.yaml from main" || echo "No changes to commit"
+          git commit -m "Sync netlify/functions/swagger.yaml to docs/swagger.yaml in gh-pages" || echo "No changes to commit"
           git push origin gh-pages
