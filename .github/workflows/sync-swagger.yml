@@ -6,7 +6,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "docs/swagger.yaml"
+      - "netlify/functions/swagger.yaml"
 
 jobs:
   sync-swagger:
