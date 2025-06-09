@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "netlify/functions/swagger.yaml"
+  workflow_dispatch:
 
 jobs:
   sync-swagger:
