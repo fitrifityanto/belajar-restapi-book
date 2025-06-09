@@ -6,26 +6,28 @@ on:
     branches: [main]
     paths:
       - "netlify/functions/swagger.yaml"
+  workflow_dispatch:
 
 jobs:
   sync-swagger:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Memberikan hak untuk melakukan push
+
     steps:
-      # Checkout branch gh-pages
       - name: Checkout gh-pages
         uses: actions/checkout@v4
         with:
           ref: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Checkout swagger.yaml dari branch main
       - name: Checkout swagger.yaml from main
         run: |
           git fetch origin main
           git checkout origin/main -- netlify/functions/swagger.yaml
-          mkdir -p docs # Pastikan folder docs ada di gh-pages
+          mkdir -p docs
           mv netlify/functions/swagger.yaml docs/swagger.yaml
 
-      # Commit dan push perubahan ke gh-pages
       - name: Commit and push changes
         run: |
           git config user.name "GitHub Actions"
