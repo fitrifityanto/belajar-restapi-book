@@ -143,7 +143,7 @@ paths:
               $ref: "#/components/schemas/BookInput"
       responses:
         "200":
-          description: Berhasil menambah buku
+          description: Berhasil menambah data buku
           content:
             application/json:
               schema:
